@@ -1,0 +1,10 @@
+.usuario, .mensaje{
+    display: inline;
+    word-wrap: break-word;
+    overflow-y: auto;
+}
+
+.mensajeContainer{
+    margin-bottom: .5em;
+    height: auto;
+}

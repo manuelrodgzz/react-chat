@@ -1,0 +1,41 @@
+.container{
+    max-width: 500px;
+    width: 80vw;
+    height: auto;
+    margin: 20vh auto 0 auto;
+    border: 1px solid black;
+    box-shadow:  0px 3px 13px 1px rgba(0,0,0,0.75);
+    background-color: white;
+}
+
+.containerTitle{
+    font-size: 30px;
+    text-align: center;
+    margin: 5vh 0 5vh 0;
+}
+
+.formContainer{
+    width: 50%;
+    margin: 0 auto 0 auto;
+}
+
+.inputNombre{
+    width: 100%;
+    margin-bottom: 30%;
+}
+
+.boton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: none;
+    padding: 1em;
+    border-radius: 10%;
+    transition: ease 350ms;
+}
+
+.boton:hover{
+    cursor: pointer;
+    background-color: #e2e2e2;
+}

@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Login from './views/Login'
+import Chat from './views/Chat'
+import './Style.css'
 
 function App() {
+
+  const [usuario, setUsuario] = useState(undefined)
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {usuario 
+      ? <Chat usuario={usuario}/>
+      : <Login onLogin={(nombre) => {setUsuario(nombre)}} />
+      }
     </div>
   );
 }
