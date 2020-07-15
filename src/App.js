@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import Login from './views/Login'
-import Chat from './views/Chat'
 import './Style.css'
+import Rutas from './router'
 
 function App() {
 
@@ -11,10 +10,7 @@ function App() {
 
   return (
     <div>
-      {usuario 
-      ? <Chat usuario={usuario}/>
-      : <Login onLogin={(nombre) => {setUsuario(nombre)}} />
-      }
+      <Rutas />
     </div>
   );
 }

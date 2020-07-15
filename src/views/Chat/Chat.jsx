@@ -6,13 +6,14 @@ import Mensaje from '../../components/Mensaje'
 
 const serverURL = (process.env.NODE_ENV === 'development') ? 'http://localhost:8080' : process.env.REACT_APP_SERVER_URL
 
-const Chat = ({usuario}) =>{
+const Chat = ({location}) =>{
 
     const [clients, setClients] = useState(undefined)
     const [socketConnected, setSocketConnected] = useState(false)
     const [socket, setSocket] = useState(io(serverURL,{autoConnect: false}))
     const [mensajes, setMensajes] = useState([])
     const [mensajeNuevo, setMensajeNuevo] = useState(undefined)
+    const [usuario, setUsuario] = useState(location.state.usuario)
 
     const txtMensaje = useRef()
 
