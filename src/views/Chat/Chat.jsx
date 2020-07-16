@@ -2,7 +2,10 @@ import React, {useEffect, useState, useRef} from 'react'
 import io from 'socket.io-client'
 import ChatCss from './Chat.module.css'
 import sendIcon from '../../img/send-message-icon-png-12.jpg'
+import usersIcon from '../../img/users-icon.png'
 import Mensaje from '../../components/Mensaje'
+import Swal from 'sweetalert2'
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 const serverURL = (process.env.NODE_ENV === 'development') ? 'http://localhost:8080' : process.env.REACT_APP_SERVER_URL
 
@@ -14,6 +17,7 @@ const Chat = ({location}) =>{
     const [mensajes, setMensajes] = useState([])
     const [mensajeNuevo, setMensajeNuevo] = useState(undefined)
     const [usuario, setUsuario] = useState(location.state.usuario)
+    const [showClients, setShowClients] = useState(false)
 
     const txtMensaje = useRef()
 
@@ -41,8 +45,26 @@ const Chat = ({location}) =>{
         socket.connect()
     }
 
-    const getMensajes = () =>{
-        return mensajes
+    const showClientsContainer = () =>{
+
+        let html = '<ul>'
+
+        clients.map(client => {
+            html += '<li>' + client.usuario + '</li>'
+        })
+
+        html += '</ul>'
+
+        //setShowClients(true)
+        Swal.fire({
+            title: 'Usuarios activos',
+            html 
+        })
+    }
+
+    const hideClientsContainer = () => {
+
+        setShowClients(false)
     }
 
     /**Intente setear el state mensajes desde el evento del socket, pero así no funciona. Cree un estado para el último mensaje
@@ -67,36 +89,53 @@ const Chat = ({location}) =>{
 
     useEffect(() => {
 
+        
+
         mensajeNuevo && setMensajes([...mensajes, mensajeNuevo])
 
     }, [mensajeNuevo])
 
     return(
-        <div className={ChatCss.chatContainer}>
-            {socketConnected ? 'conectado' : 'desconectado'}
-            <h3 className={ChatCss.title}>CHAT</h3>
-            {/* <ul className={ChatCss.userList}>
-                {clients && clients.map((cliente, index) => (
-                    <li className={ChatCss.users} key={cliente.id}>
-                        <div className={ChatCss.connected}></div>
-                        {cliente.usuario}
-                    </li>
-                ))}
-            </ul> */}
-            <div className={ChatCss.chatBox}>
-                {mensajes && mensajes.map((mensaje, index) => (
-                    <Mensaje key={mensaje.usuario + index} usuario={mensaje.usuario} 
-                        mensaje={mensaje.mensaje} 
-                        color={mensaje.color}
-                    />
-                ))}
+        <div>
+            {/**Chat Container */}
+            <div className={ChatCss.chatContainer}>
+                <div className={socketConnected ? ChatCss.connected : ChatCss.disconnected}></div>
+                <div onClick={showClientsContainer} className={ChatCss.usersIconContainer}>
+                    <img src={usersIcon} className={ChatCss.userIcon} alt='usersIcon'/>{`(${clients && clients.length})`}
+                </div> 
+                <h3 className={ChatCss.title}>CHAT</h3>
+                <ScrollToBottom className={ChatCss.chatBox}>
+                    {mensajes && mensajes.map((mensaje, index) => (
+                        <Mensaje key={mensaje.usuario + index} usuario={mensaje.usuario} 
+                            mensaje={mensaje.mensaje} 
+                            color={mensaje.color}
+                        />
+                    ))}
+                </ScrollToBottom>
+                <form onSubmit={enviarMensaje}>
+                    <input ref={txtMensaje} className={ChatCss.chatTextbox} placeholder=''/>
+                    <button className={ChatCss.sendButton}>
+                        <img className={ChatCss.sendIcon} src={sendIcon} alt='sendIcon'/>
+                    </button>
+                </form>
             </div>
-            <form onSubmit={enviarMensaje}>
-                <input ref={txtMensaje} className={ChatCss.chatTextbox} placeholder=''/>
-                <button className={ChatCss.sendButton}>
-                    <img className={ChatCss.sendIcon} src={sendIcon} alt='sendIcon'/>
-                </button>
-            </form>
+
+            {/* Clients div
+            <div className={`${ChatCss.clientsContainer} ${showClients ? ChatCss.active : ChatCss.hidden}`}>
+                <div onClick={hideClientsContainer} className={ChatCss.clientsEmpty}></div>
+                <div className={ChatCss.clientsList}>
+                {
+                    <ul className={ChatCss.userList}>
+                        {clients && clients.map((cliente, index) => (
+                            <li className={ChatCss.users} key={cliente.id}>
+                                <div className={ChatCss.connected}></div>
+                                {cliente.usuario}
+                            </li>
+                        ))}
+                    </ul>
+                }
+                </div>
+            </div> */}
         </div>
     )
 }

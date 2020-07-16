@@ -11,7 +11,10 @@ const Mensaje = ({usuario, mensaje, color}) => {
     return(
         <div className={MensajeCss.mensajeContainer}>
             <p className={MensajeCss.usuario} style={estiloUsuario}>{usuario + ': '}</p>
-            <p className={MensajeCss.mensaje}>{mensaje}</p>
+            {usuario === 'chat-bot'
+            ? <p className={MensajeCss.mensaje} style={{color: 'gray'}}><i>{mensaje}</i></p>
+            : <p className={MensajeCss.mensaje}>{mensaje}</p>
+            }
         </div>
     )
 }

@@ -1,5 +1,26 @@
+@keyframes showClients{
+    0%{
+        transform: translateX(100%);
+    }
+
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes hideClients{
+    0%{
+        transform: translateX(0%);
+    }
+    
+    100%{
+        transform: translateX(100%);
+    }
+}
+
 .chatContainer{
-    height: 100%;
+    display: absolute;
+    height: 70%;
     width: 100%;
 }
 
@@ -13,6 +34,15 @@
     display: inline-block;
     border-radius: 50%;
     background-color: green;
+    width: .5em;
+    height: .5em;
+    margin-right: .5em;
+}
+
+.disconnected{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: red;
     width: .5em;
     height: .5em;
     margin-right: .5em;
@@ -50,4 +80,47 @@
 
 .sendIcon{
     width:80%;
+}
+
+.usersIconContainer{
+    float: right;
+}
+
+.userIcon{
+    width: 1.2em;
+}
+
+.clientsContainer{
+    position: absolute;
+    top: 0;
+    right:0;
+    height:100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.clientsList{
+    display: inline-block;
+    background-color: blue;
+    width: 50vw;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.clientsEmpty{
+    display: inline-block;
+    opacity: 0;
+    width:50vw;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.hidden{
+    animation: hideClients 350ms forwards;
+}
+
+.active{
+    animation: showClients 350ms forwards;
 }
