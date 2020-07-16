@@ -18,6 +18,10 @@
     }
 }
 
+.mainContainer{
+    max-height: 90vh;
+}
+
 .chatContainer{
     display: absolute;
     height: 70%;

@@ -96,7 +96,7 @@ const Chat = ({location}) =>{
     }, [mensajeNuevo])
 
     return(
-        <div>
+        <div className={ChatCss.mainContainer}>
             {/**Chat Container */}
             <div className={ChatCss.chatContainer}>
                 <div className={socketConnected ? ChatCss.connected : ChatCss.disconnected}></div>

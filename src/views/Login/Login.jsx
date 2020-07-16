@@ -1,22 +1,38 @@
 import React, {useState} from 'react'
 import LoginCss from './Login.module.css'
 import {Redirect} from 'react-router-dom'
- 
+import Swal from 'sweetalert2' 
+
 const Login = ({onLogin}) =>{
 
     const [redirect, setRedirect] = useState(false)
     const [usuario, setUsuario] = useState(undefined)
 
+    const nombresNoValidos = ['chat-bot']
+
     const login = (e) =>{
         e.preventDefault()
         const nombre = e.target[0].value.trim()
+
+        if(nombresNoValidos.includes(nombre)){
+            Swal.fire({
+                title: 'ADVERTENCIA',
+                text: 'Este nombre no es válido',
+                icon: 'warning'
+            })
+            return
+        }
 
         if(nombre !== ''){
             setUsuario(nombre)
             setRedirect(true)
         }
         else
-            alert('Debe ingresar un nombre')
+        Swal.fire({
+            title: 'ADVERTENCIA',
+            text: 'Debe ingresar un nombre',
+            icon: 'warning'
+        })
     }
 
     const renderRedirect = () => {
