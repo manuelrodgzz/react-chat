@@ -108,7 +108,7 @@
 .clientsList{
     display: inline-block;
     background-color: #d6d6d6;
-    width: 45%;
+    width: 50%;
     height: 100vh;
     margin: 0;
     overflow-x: hidden;
@@ -117,7 +117,7 @@
 
 .clientsEmpty{
     display: inline-block;
-    width:45%;
+    width:50%;
     height: 100vh;
     margin: 0;
     overflow-x: hidden;
