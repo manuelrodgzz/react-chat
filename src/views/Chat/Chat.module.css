@@ -19,12 +19,14 @@
 }
 
 .mainContainer{
-    max-height: 90vh;
+    height: auto;
+    position:relative;
+    overflow: hidden;
 }
 
 .chatContainer{
     display: absolute;
-    height: 70%;
+    height: auto;
     width: 100%;
 }
 
@@ -105,17 +107,17 @@
 
 .clientsList{
     display: inline-block;
-    background-color: blue;
-    width: 50vw;
+    background-color: #d6d6d6;
+    width: 49%;
     height: 100vh;
     margin: 0;
     overflow-x: hidden;
+    border: .5px solid black;
 }
 
 .clientsEmpty{
     display: inline-block;
-    opacity: 0;
-    width:50vw;
+    width:50%;
     height: 100vh;
     margin: 0;
     overflow-x: hidden;

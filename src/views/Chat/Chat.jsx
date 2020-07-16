@@ -47,19 +47,7 @@ const Chat = ({location}) =>{
 
     const showClientsContainer = () =>{
 
-        let html = '<ul>'
-
-        clients.map(client => {
-            html += '<li>' + client.usuario + '</li>'
-        })
-
-        html += '</ul>'
-
-        //setShowClients(true)
-        Swal.fire({
-            title: 'Usuarios activos',
-            html 
-        })
+        setShowClients(true)
     }
 
     const hideClientsContainer = () => {
@@ -120,22 +108,25 @@ const Chat = ({location}) =>{
                 </form>
             </div>
 
-            {/* Clients div
+            {/* Clients div*/
             <div className={`${ChatCss.clientsContainer} ${showClients ? ChatCss.active : ChatCss.hidden}`}>
                 <div onClick={hideClientsContainer} className={ChatCss.clientsEmpty}></div>
                 <div className={ChatCss.clientsList}>
                 {
-                    <ul className={ChatCss.userList}>
-                        {clients && clients.map((cliente, index) => (
-                            <li className={ChatCss.users} key={cliente.id}>
-                                <div className={ChatCss.connected}></div>
-                                {cliente.usuario}
-                            </li>
-                        ))}
-                    </ul>
+                    <React.Fragment>
+                        <h3 style={{textAlign: 'center'}}>Usuarios activos</h3>
+                        <ul className={ChatCss.userList}>
+                            {clients && clients.map((cliente, index) => (
+                                <li className={ChatCss.users} key={cliente.id}>
+                                    <div className={ChatCss.connected}></div>
+                                    {cliente.usuario}
+                                </li>
+                            ))}
+                        </ul>
+                    </React.Fragment>
                 }
                 </div>
-            </div> */}
+            </div>}
         </div>
     )
 }
