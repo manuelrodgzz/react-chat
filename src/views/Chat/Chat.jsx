@@ -7,7 +7,7 @@ import Mensaje from '../../components/Mensaje'
 import Swal from 'sweetalert2'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
-const serverURL = (process.env.NODE_ENV === 'development') ? 'http://localhost:8080' : process.env.REACT_APP_SERVER_URL
+const serverURL = (process.env.NODE_ENV === 'development') ? 'http://localhost:8080' : 'https://marg-node-chat.herokuapp.com'
 
 const Chat = ({location}) =>{
 
