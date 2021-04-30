@@ -4,7 +4,6 @@ import ChatCss from './Chat.module.css'
 import sendIcon from '../../img/send-message-icon-png-12.jpg'
 import usersIcon from '../../img/users-icon.png'
 import Mensaje from '../../components/Mensaje'
-import Swal from 'sweetalert2'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
 const serverURL = (process.env.NODE_ENV === 'development') ? 'http://localhost:8080' : 'https://marg-node-chat.herokuapp.com'
@@ -88,6 +87,7 @@ const Chat = ({location}) =>{
             {/**Chat Container */}
             <div className={ChatCss.chatContainer}>
                 <div className={socketConnected ? ChatCss.connected : ChatCss.disconnected}></div>
+                {socketConnected ? 'Connected' : 'Connecting...'}
                 <div onClick={showClientsContainer} className={ChatCss.usersIconContainer}>
                     <img src={usersIcon} className={ChatCss.userIcon} alt='usersIcon'/>{`(${clients && clients.length})`}
                 </div> 
